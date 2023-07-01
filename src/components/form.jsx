@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "./form.module.css";
 
 export default function DisplayForm() {
   const initialValues = {
@@ -46,16 +47,13 @@ export default function DisplayForm() {
     }
     return errors;
   };
-
+  const isButtonDisabled = () => {
+    return !formValues.username || !formValues.email || !formValues.password;
+  };
   return (
     <div className="container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="message-success">Sign in successfully</div>
-      ) : (
-        <div>Couldn't sign in</div>
-      )}
       <form onSubmit={handleSubmit} noValidate>
-        <h1>Login Form</h1>
+        <h1 className="header">Login Form</h1>
         <label>Username</label>
         <input
           type="text"
@@ -89,11 +87,20 @@ export default function DisplayForm() {
         <br />
         <p>{formErrors.password}</p>
         <br />
-        <button className="btn" onChange={handleChange}>
+        <button
+          className="btn"
+          onChange={handleChange}
+          disabled={isButtonDisabled()}
+        >
           {" "}
           Submit{" "}
         </button>
       </form>
+      {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="message-success">Sign in successfully</div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
