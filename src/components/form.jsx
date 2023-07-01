@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./form.module.css";
 
 export default function DisplayForm() {
-  const initialValues = {
-    username: "",
-    email: "",
-    password: "",
-  };
-
-  const [formValues, setFormValues] = useState(initialValues);
+  const savedFormValues = JSON.parse(localStorage.getItem("formValues"));
+  const [formValues, setFormValues] = useState(savedFormValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("formValues", JSON.stringify(formValues));
+  }, [formValues]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));

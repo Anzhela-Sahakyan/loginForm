@@ -14,14 +14,14 @@
 }
 .greenBorder {
   border: greenyellow 2px solid;
-  margin-left: 15px;
+  margin-left: 20px;
   height: 45px;
   width: 300px;
 }
 
 .redBorder {
   border: red 2px solid;
-  margin-left: 15px;
+  margin-left: 20px;
   height: 45px;
   width: 300px;
 }
