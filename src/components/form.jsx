@@ -14,7 +14,6 @@ export default function DisplayForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,9 +22,7 @@ export default function DisplayForm() {
   };
 
   useEffect(() => {
-    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
     }
   }, [formErrors]);
 
